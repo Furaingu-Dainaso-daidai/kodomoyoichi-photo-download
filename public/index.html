@@ -59,14 +59,16 @@
         }
     </style>
 </head>
+
 <body>
-<div class="thank-you-message" id="thank-you-message">
-    <div>ご来店ありがとうございました！</div>
-    <div>準備中のため後日、再度お試しください。</div>
-    <div class="close-button" id="close-button" onclick="closeThankYouMessage()">&times;</div>
-</div>
+
 <div class="overlay">
-    <div class="message">準備中…</div>
+    
+    <marquee direction="down" behavior="alternate" style="width:5000px; height: 750px;">
+        <marquee behavior="alternate" style="color:rgb(234, 255, 0);font-size: 3.5em;">
+            <p>準備中<p>
+        </marquee>
+    </marquee>
 </div>
 <!-- 他のコンテンツこれより上を消す -->
  <!DOCTYPE html>
@@ -85,7 +87,14 @@
         h1.title {
             font-size: 3em;
             color: #000000;
-            animation: bounce 1.5s infinite;
+            animation: bounce 0.987s infinite;
+        }        
+        a,a:visited{
+        color: #024ad0;/*カラーコードは任意*/
+        font-size: 1.15em;
+        font-family: Arial, sans-serif;
+        font-weight: normal;
+
         }
         h2.setumei {
             font-size: 1.29em;
@@ -98,13 +107,12 @@
             margin-top: -0.5em;
         }
         h4.tyuui {
-            position: sticky;
-            font-size: 0.89em;
-            color: #ffffff;
-            margin-top: -0.5em;
-            z-index: 9999;
+            font-size: 1em;
+            color: #000000;
+            margin-top: 1em;
             font-family: Georgia, serif;
-            font-weight: normal;
+            font-size: 1.1em;
+            font-weight: bold
         }
         @keyframes bounce {
             0%, 100% {
@@ -123,32 +131,44 @@
             margin-bottom: 20px;
         }
         /* 追加部分 */
-        #thanks-message1 {
+        #thanks-message {
             position: sticky;
-            top: 2px;
+            top: 20px;
             background-color: #008000;
             color: rgb(255, 255, 255);
             padding: 12.5px;
-            font-size: 2em;
-            z-index: 9999;
+            font-size: 2.25em;
+            z-index: 1000;
+
         }
+        #thanks-message1 {
+            position: sticky;
+            top: 85px;
+            background-color: #008000;
+            color: rgb(255, 255, 255);
+            padding: 12.5px;
+            font-size: 1em;
+            z-index: 1000;
+
+        }
+        
     </style>
 </head>
 <body>
     <!-- ここにテロップを追加 -->
-    <div id="thanks-message1">ご来店ありがとうございました！</div>
-    <div id="thanks-message1">準備中のため後日、再度お試しください。</div>
-    
-    <h1 class="title">写真ダウンロード</h1>
-    <h2 class="ookinasetumei">下のフィールドに番号を入力すると写真がダウンロードできます。</h2>
+    <div id="thanks-message">ご来店ありがとうございました！</div>
+    <div id="thanks-message1">ブックマークしてお待ちください。本サイトは、ひらがなではありません。</div>
+    <h1 class="title">写真をダウンロード！！</h1>
+    <h2 class="ookinasetumei">「写真番号」を入力すると写真がダウンロードできます。</h2>
     <h2 class="setumei">セキュリティ保護のため、合わせて簡単な計算をしてください。</h2>
+    <h2 class="setumei">「ダウンロードサイトへ」をクリックし、パスワードの入力をしてください。</h2>
     <form id="photo-form">
-        <input type="number" id="photo-number" placeholder="写真番号 数字のみ対応" required>
+        <input type="number" id="photo-number" placeholder="写真番号 打ち間違え注意！" required>
         <div id="math-captcha">
             <label id="math-question"></label>
-            <input type="number" id="math-answer" placeholder="問題の答え 数字のみ対応" required>
+            <input type="number" id="math-answer" placeholder="計算の答え" required>
         </div>
-        <button type="submit">ダウンロード</button>
+        <button type="submit">ダウンロードサイトへGO ※パスワード入力</button>
     </form>
     <div id="photo-container"></div>
 
@@ -168,7 +188,7 @@
             const userAnswer = parseInt(document.getElementById('math-answer').value);
 
             if (userAnswer !== correctAnswer) {
-                alert("答えが間違っています。もう一度試してください。");
+                alert("計算が間違っています。もう一度試してください。");
                 correctAnswer = generateMathQuestion();
                 return;
             }
@@ -182,14 +202,20 @@
                     if (data.url) {
                         photoContainer.innerHTML = `<img src="${data.url}" alt="写真" style="max-width: 100%;"><br><a href="${data.url}" download>ダウンロード</a>`;
                     } else {
-                        photoContainer.innerHTML = `<p>写真ダウンロードURLが見つかりませんでした。もう一度入力してみてください。</p>`;
+                        photoContainer.innerHTML = `<p>写真ダウンロードサイトが見つかりませんでした。もう一度入力してください。</p>`;
                     }
                 })
                 .catch(error => {
-                    photoContainer.innerHTML = `<p>エラーが発生しました。</p>`;
+                    photoContainer.innerHTML = `<p>エラーが発生しました。再読み込みまたは、「問い合わせ等」から問い合わせてください。</p>`;
                 });
         });
     </script>
+
 </body>
-<h4 class="tyuui">このサイトでは、一切個人情報を収集していません。<h4>
+<h2 class="setumei">このサービスのすべては、《8月下旬ごろ》に取り消しされます。</h2>
+<h2 class="setumei">早めにダウンロードをお願いします。</h2>
+<h4 class="tyuui">詳細の日付は、後日表記します。<h4></h4>
+<a href="mailto:kodomoyoichi-shashindaunrodo@onlyapp.net">お問い合わせ等</a>
+※内容等を変更した場合のみ、返信します。
+<h4 class="tyuui">このサイトのURLを、SNS等で拡散・公開しないでください。<h4>
 </html>
