@@ -64,7 +64,7 @@
 
 <div class="overlay">
     
-    <marquee direction="down" behavior="alternate" style="width:5000px; height: 100vh;">
+    <marquee direction="down" behavior="alternate" style="width:5000px; height: 900px;">
         <marquee behavior="alternate" style="color:rgb(234, 255, 0);font-size: 3.5em;">
             <p>準備中<p>
         </marquee>
@@ -133,22 +133,30 @@
         /* 追加部分 */
         #thanks-message {
             position: sticky;
-            top: 20px;
+            top: 0;
             background-color: #008000;
             color: rgb(255, 255, 255);
             padding: 12.5px;
             font-size: 2.25em;
             z-index: 1000;
+            position: fixed;
+            left: 0;
+            width: 100%;
 
         }
         #thanks-message1 {
             position: sticky;
-            top: 85px;
+            bottom:0;
             background-color: #008000;
             color: rgb(255, 255, 255);
             padding: 12.5px;
             font-size: 1em;
             z-index: 1000;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+  
 
         }
         
